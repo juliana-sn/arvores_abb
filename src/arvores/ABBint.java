@@ -39,4 +39,32 @@ public class ABBint {
         }
         return cont;
     }
+
+    public boolean consulta(NO p, int valor){
+        if(p != null){
+            if(valor == p.dado){
+                return true;
+            }else if(valor < p.dado){
+                return consulta(p.esq, valor);
+            }else{
+                return consulta(p.dir, valor);
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public int contaConsulta(NO p, int valor, int cont){
+        if(p != null){
+            cont++;
+            if(valor == p.dado){
+                return cont;
+            }else if(valor < p.dado){
+               cont = contaConsulta(p.esq, valor, cont);
+            }else{
+               cont = contaConsulta(p.dir, valor, cont);
+            }
+        }
+        return cont;
+    }
 }
